@@ -1,7 +1,4 @@
 REPORT_URL = "https://bauripalash.github.io/ncov-19-india/data/report.json";
-fetch(REPORT_URL)
-  .then(res => res.json())
-  .then(res => parsePage(res));
 
 const parsePage = r => {
   context = {
@@ -33,3 +30,11 @@ const writePage = (context, table, lup) => {
   document.getElementById("state_table").innerHTML = table["t"];
   document.getElementById("lup").innerHTML = lup;
 };
+
+
+
+fetch(REPORT_URL)
+  .then(res => res.json())
+  .then(res => parsePage(res));
+
+

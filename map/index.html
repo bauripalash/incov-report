@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>
-      India's Statewise Coronavirus (COVID-19) Report | Palash Bauri
+      Maps | India's Statewise Coronavirus (COVID-19) Report | Palash Bauri
     </title>
     <link
       rel="shortcut icon"
@@ -63,67 +63,46 @@
 
     <script type="application/ld+json">
       {
-          "@context": "https://schema.org",
-          "@type": "Website",
-          "publisher": {
-              "@type": "Organization",
-              "name": "India's Statewise Coronavirus (COVID-19) Report",
-              "logo": "https://covid19.palashbauri.in/"
-          },
-          "url": "https://covid19.palashbauri.in/",
-          "image": {
-              "@type": "ImageObject",
-              "url": "https://en.palashbauri.in/assets/img/incover.png",
-              "width": 2000,
-              "height": 666
-          },
-          "mainEntityOfPage": {
-              "@type": "WebPage",
-              "@id": "https://covid19.palashbauri.in/"
-          },
-          "description": "Indian Statewise Coronavirus COVID-19 Effected Report Developed by Palash Bauri"
+        "@context": "https://schema.org",
+        "@type": "Website",
+        "publisher": {
+          "@type": "Organization",
+          "name": "India's Statewise Coronavirus (COVID-19) Report",
+          "logo": "https://covid19.palashbauri.in/"
+        },
+        "url": "https://covid19.palashbauri.in/",
+        "image": {
+          "@type": "ImageObject",
+          "url": "https://en.palashbauri.in/assets/img/incover.png",
+          "width": 2000,
+          "height": 666
+        },
+        "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": "https://covid19.palashbauri.in/"
+        },
+        "description": "Indian Statewise Coronavirus COVID-19 Effected Report Developed by Palash Bauri"
       }
     </script>
-    <link rel="stylesheet" href="/leaflet/leaflet.css">
-    <link rel="stylesheet" href="/index.css">
+    <link rel="stylesheet" href="/leaflet/leaflet.css" />
+    <link rel="stylesheet" href="/index.css" />
   </head>
   <body>
     <div class="main">
       <h2>Coronavirus Report of India</h2>
       <h4>Statewise COVID-19 Report of India</h4>
-      <small> Developed by Palash Bauri</small><hr>
+      <small> Developed by Palash Bauri</small>
+      <hr />
       <div class="navigation">
-        <a href="/">HOME</a> | 
-        <a href="/map">MAP</a> | 
+        <a href="/">HOME</a> | <a href="/map">MAP</a> |
         <a href="/charts">CHARTS</a> |
         <a href="/links">LINKS</a>
       </div>
       <hr />
-      <div id="boxes">
-      <div class="e_box">
-        <p class="e_label">Total Effected</p>
-        <p class="e_num">{{=it.effected}}</p>
-      </div>
-      <div class="e_box">
-        <p class="e_label">Total Death</p>
-        <p class="e_num">{{=it.death}}</p>
-      </div>
-      <div class="e_box">
-        <p class="e_label">Total Recovered</p>
-        <p class="r_num">{{=it.cured}}</p>
-      </div>
-      <div class="e_box">
-        <p class="e_label">States Effected</p>
-        <p class="s_num">{{=it.states}}</p>
-      </div>
-    </div>
-      <div id="state_table" style="overflow-x:auto;">
-        
-      </div>
-      <br>
-      <!-- <div class="state_map" id="state_map"></div> -->
       <br />
-      <small>Last Updated : <span id="lup" style="color:black"></span></small>
+      <div class="state_map" id="state_map"></div>
+      <br />
+      <small>Last Updated : <span id="lup" style="color:black">Today (for time, see home)</span></small>
       <hr />
       <small
         >Data Provided by
@@ -135,10 +114,10 @@
         <a href="https://bauripalash.keybase.pub/">Palash Bauri</a></small
       ><br />
     </div>
-    <script src="/dot.js"></script>
-    <!-- <script src="/in_states.js"></script> -->
-    <!-- <script src="/leaflet/leaflet.js"></script> -->
-    
-    <script src="/index.js"></script>
+    <!-- <script src="/dot.js"></script> -->
+    <script src="/in_states.js"></script>
+    <script src="/leaflet/leaflet.js"></script>
+
+    <script src="/map/map.js"></script>
   </body>
 </html>
