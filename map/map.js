@@ -4,6 +4,12 @@ var smap; // The Map Leaflet Object
 var gj; // The GeoJSON Layer
 var infobox;
 
+var eStateList = Array();
+var eCountList = Array();
+var dList = Array();
+var rList = Array();
+var totalInfected;
+
 const zoomTo = e => {
   smap.fitBounds(e.target.getBounds());
   showInfo(e);
@@ -64,7 +70,19 @@ const mapstyle = s => {
   };
 };
 
-const buildMap = () => {
+const buildMap = (res) => {
+  
+  res.slice(0, res.length - 1)
+  .forEach(e => {
+    eStateList.push(e["state"]);
+    eCountList.push(e["effected"]);
+    dList.push(e["death"]);
+    rList.push(e["recovered"]);
+  });
+// console.log(eStateList);
+ totalInfected = eCountList.reduce((a, b) => {
+  return a + b;
+}, 0);
   smap = L.map("state_map").setView([22.5, 82], 3);
 
   L.tileLayer(
@@ -92,7 +110,7 @@ const buildMap = () => {
   infobox.update = function(props) {
     if (props) {
       if (eStateList.indexOf(props["STATE"]) >= 0) {
-        sd = JSON.parse(localStorage.getItem("alldata"))[
+        sd = res[
           eStateList.indexOf(props["STATE"])
         ];
         // console.log(sd);
@@ -111,9 +129,6 @@ const buildMap = () => {
       let status = "<h4>Statewise COVID-19 Data</h4>" + "Hover over a state";
     }
     this._div.innerHTML = status;
-    // this._div.innerHTML = props
-    //   ? `<h4>${props["STATE"]}</h4><hr><strong>Effected: </strong> <span style="color:red">${props["effected"]}</span>`
-    //   : "<h4>Statewise COVID-19 Data</h4>" + "Hover over a state";
   };
 
   infobox.addTo(smap);
@@ -123,35 +138,15 @@ const buildMap = () => {
   }).addTo(smap);
 };
 
-let eStateList = Array();
-let eCountList = Array();
-let dList = Array();
-let rList = Array();
+
 
 fetch(REPORT_URL)
   .then(res => res.json())
-  .then(res =>
-    localStorage.setItem(
-      "alldata",
-      JSON.stringify(res),
-      localStorage.setItem("arlen", res.length)
-    )
-  );
+  .then(res => buildMap(res));
 
-JSON.parse(localStorage.getItem("alldata"))
-  .slice(0, localStorage.getItem("arlen") - 1)
-  .forEach(e => {
-    eStateList.push(e["state"]);
-    eCountList.push(e["effected"]);
-    dList.push(e["death"]);
-    rList.push(e["recovered"]);
-  });
 
-let totalInfected = eCountList.reduce((a, b) => {
-  return a + b;
-}, 0);
 
-buildMap();
+// buildMap(res);
 // console.log(totalInfected);
 // mapstyle(eStateList[0]);
 // console.log(eStateList)
