@@ -1,4 +1,4 @@
-REPORT_URL = "https://bauripalash.github.io/ncov-19-india/data/report.json";
+REPORT_URL = "https://raw.githubusercontent.com/bauripalash/ncov-19-india/master/data/report.json";
 
 const parsePage = r => {
   // context = {

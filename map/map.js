@@ -1,5 +1,5 @@
 // CONSTANTS
-REPORT_URL = "https://bauripalash.github.io/ncov-19-india/data/report.json"; //Data Source
+REPORT_URL = "https://raw.githubusercontent.com/bauripalash/ncov-19-india/master/data/report.json"; //Data Source
 var smap; // The Map Leaflet Object
 var gj; // The GeoJSON Layer
 var infobox;

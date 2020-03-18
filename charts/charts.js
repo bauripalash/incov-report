@@ -84,9 +84,8 @@ fetch(JSON_URL)
 // console.log(cdata , rdata , ddata);
 // crd = document.getElementById("crd");
 // console.log(Object.values(cdata));
-var download_chart = function(){
-    var link = document.createElement('a');
-    link.download = 'covid19-india-chart.jpg';
-    link.href = document.getElementById('crd').toDataURL('image/jpeg')
-    link.click();
+var download_chart = function(el){
+  const canvas = document.getElementById("crd");
+  var image = canvas.toDataURL("image/jpg");
+  el.href = image;
   }

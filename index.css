@@ -83,7 +83,7 @@ small {
   color: #777;
 }
 
-.info .infos{
+.info .infos {
   text-align: justify;
   text-justify: auto;
 }
@@ -96,4 +96,31 @@ small {
 .navigation a {
   display: inline-block;
   color: #0e2877;
+}
+
+button,
+.button {
+  text-decoration: none;
+  font-size: 20px;
+  border-radius: 16px;
+  display: inline-block;
+  text-align: center;
+  color: #0e2877;
+  background-color: white;
+  padding: 4px 8px;
+  /*border: 0px solid grey;*/
+  border: none;
+  cursor: pointer;
+}
+
+button:hover,
+.button:hover {
+  text-decoration: none;
+  background-color: cyan;
+  color: black;
+}
+
+button:active,
+.button:active {
+  box-shadow: none;
 }
