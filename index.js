@@ -23,12 +23,18 @@ const parsePage = r => {
 };
 
 const writePage = (context, table, lup) => {
-  boxes = document.getElementById("boxes").innerHTML;
-  box_template = doT.template(boxes);
-  document.getElementById("boxes").innerHTML = box_template(context);
-
+  document.getElementById("e_num").innerText = context["effected"];
+  document.getElementById("r_num").innerText = context["cured"];
+  document.getElementById("d_num").innerText = context["death"];
+  document.getElementById("s_num").innerText = context["states"];
   document.getElementById("state_table").innerHTML = table["t"];
-  document.getElementById("lup").innerHTML = lup;
+  document.getElementById("lup").innerText = lup;
+  // boxes = document.getElementById("boxes").innerHTML;
+  // box_template = doT.template(boxes);
+  // document.getElementById("boxes").innerHTML = box_template(context);
+
+  // document.getElementById("state_table").innerHTML = table["t"];
+  // document.getElementById("lup").innerHTML = lup;
 };
 
 
