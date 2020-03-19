@@ -102,15 +102,16 @@
       <hr />
       <br />
       <div class="chartbox" id="chartbox">
+        <progress id="animationProgress" max="1" value="0" style="width: 100%;height:10px;"></progress>
         <canvas id="crd" width="100%" height="100px"></canvas>
+        
         <br>
-        <a href="#" class="button" id="download_chart" onclick="download_chart(this)">Download Graph</a>
+        <a href="#" class="button" id="download_chart" onclick="download_chart(this)">Loading...</a>
       </div>
       <br />
       <small
         >Last Updated :
-        <span id="lup" style="color:black">Today (for time, see home)</span>
-        (Format : MM/DD/YY)</small
+        <span id="lup" style="color:black">Today (for time, see home)</span></small
       >
       <hr />
       <small

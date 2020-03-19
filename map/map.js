@@ -60,12 +60,12 @@ const mapstyle = s => {
     }
   }
   //   console.log(s.properties["STATE"]);
-
+  console.log(e / totalInfected);
   return {
     weight: 1,
     opacity: 0.2,
     color: "black",
-    fillOpacity: e / totalInfected,
+    fillOpacity: (e / totalInfected) * 2,
     fillColor: "#cc0000"
   };
 };

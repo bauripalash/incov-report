@@ -1,10 +1,39 @@
 JSON_URL = "https://bauripalash.github.io/ncov-19-india/data/trend.json";
-
+REPORT_URL =
+  "https://raw.githubusercontent.com/bauripalash/ncov-19-india/master/data/report.json";
 // window.onload = function() {
-const buildChart = (json_data) => {
+const buildChart = json_data => {
   cdata = json_data["CONFIRMED"];
   rdata = json_data["RECOVERED"];
+
   ddata = json_data["DEATHS"];
+
+  today = new Date();
+
+  if (
+    localStorage.getItem("cr") != undefined &&
+    localStorage.getItem("ce") != undefined &&
+    localStorage.getItem("cd") != undefined
+  ) {
+    cdata[
+      `${today.getMonth() + 1}/${today.getDate()}/${today
+        .getFullYear()
+        .toString()
+        .slice(2, 4)}`
+    ] = localStorage.getItem("ce");
+    rdata[
+      `${today.getMonth() + 1}/${today.getDate()}/${today
+        .getFullYear()
+        .toString()
+        .slice(2, 4)}`
+    ] = localStorage.getItem("cr");
+    ddata[
+      `${today.getMonth() + 1}/${today.getDate()}/${today
+        .getFullYear()
+        .toString()
+        .slice(2, 4)}`
+    ] = localStorage.getItem("cd");
+  }
   var config = {
     type: "line",
     data: {
@@ -39,6 +68,16 @@ const buildChart = (json_data) => {
         display: true,
         text: "India's COVID-19 Report (covid19.palashbauri.in)"
       },
+      animation: {
+        duration: 2000,
+        onProgress: function(animation) {
+          progress.value = animation.currentStep / animation.numSteps;
+        },
+        onComplete: function() {
+          progress.style.display = "none";
+          document.getElementById('download_chart').innerText = "Download Graph";
+        }
+      },
       tooltips: {
         mode: "index",
         intersect: false
@@ -70,22 +109,30 @@ const buildChart = (json_data) => {
     }
   };
   var ctx = document.getElementById("crd").getContext("2d");
+  var progress = document.getElementById('animationProgress');
   window.myLine = new Chart(ctx, config);
-  document.getElementById("lup").innerHTML = Object.keys(cdata)[
-    Object.keys(cdata).length - 1
-  ];
+  // document.getElementById("lup").innerHTML = Object.keys(cdata)[
+  //   Object.keys(cdata).length - 1
+  // ];
   // };
 };
 
-fetch(JSON_URL)
-  .then(res => res.json())
-  .then(res => buildChart(res));
-
-// console.log(cdata , rdata , ddata);
-// crd = document.getElementById("crd");
-// console.log(Object.values(cdata));
-var download_chart = function(el){
+var download_chart = function(el) {
   const canvas = document.getElementById("crd");
   var image = canvas.toDataURL("image/jpg");
   el.href = image;
-  }
+};
+
+fetch(REPORT_URL)
+  .then(res => res.json())
+  .then(r => {
+    var death = r[r.length - 1]["total_death"];
+    var effected = r[r.length - 1]["total_effected"];
+    var cured = r[r.length - 1]["total_cured"];
+    localStorage.setItem("ce", effected);
+    localStorage.setItem("cr", cured);
+    localStorage.setItem("cd", death);
+    fetch(JSON_URL)
+      .then(res => res.json())
+      .then(res => buildChart(res));
+  });
