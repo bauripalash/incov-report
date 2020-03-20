@@ -75,7 +75,11 @@ const buildChart = json_data => {
         },
         onComplete: function() {
           progress.style.display = "none";
-          document.getElementById('download_chart').innerText = "Download Graph";
+          document.getElementById("download_chart").innerText =
+            "Download Graph";
+          const canvas = document.getElementById("crd");
+          var image = canvas.toDataURL("image/jpg");
+          document.getElementById("download_chart").href = image;
         }
       },
       tooltips: {
@@ -109,7 +113,7 @@ const buildChart = json_data => {
     }
   };
   var ctx = document.getElementById("crd").getContext("2d");
-  var progress = document.getElementById('animationProgress');
+  var progress = document.getElementById("animationProgress");
   window.myLine = new Chart(ctx, config);
   // document.getElementById("lup").innerHTML = Object.keys(cdata)[
   //   Object.keys(cdata).length - 1
@@ -117,11 +121,11 @@ const buildChart = json_data => {
   // };
 };
 
-var download_chart = function(el) {
-  const canvas = document.getElementById("crd");
-  var image = canvas.toDataURL("image/jpg");
-  el.href = image;
-};
+// var download_chart = function(el) {
+//   const canvas = document.getElementById("crd");
+//   var image = canvas.toDataURL("image/jpg");
+//   el.href = image;
+// };
 
 fetch(REPORT_URL)
   .then(res => res.json())

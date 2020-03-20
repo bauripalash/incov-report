@@ -124,3 +124,7 @@ button:active,
 .button:active {
   box-shadow: none;
 }
+
+.lbox{
+  text-align: left;
+}
