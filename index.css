@@ -125,6 +125,10 @@ button:active,
   box-shadow: none;
 }
 
-.lbox{
+.lbox {
   text-align: left;
+}
+
+.lbox li a {
+  word-wrap: break-word;
 }
