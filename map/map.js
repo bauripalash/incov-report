@@ -51,10 +51,10 @@ const oef = (f, l) => {
 const mapstyle = s => {
   let e = 0;
   if (eStateList.indexOf(s.properties["STATE"]) >= 0) {
-    if (s.properties["STATE"] == "Union Territory of Jammu and Kashmir") {
+    if (s.properties["STATE"] == "Jammu and Kashmir") {
       e =
         eCountList[eStateList.indexOf(s.properties["STATE"])] +
-        eCountList[eStateList.indexOf("Union Territory of Ladakh")];
+        eCountList[eStateList.indexOf("Ladakh")];
     } else {
       e = eCountList[eStateList.indexOf(s.properties["STATE"])];
     }
